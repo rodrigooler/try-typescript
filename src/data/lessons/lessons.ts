@@ -163,7 +163,8 @@ console.log("Length 2:", length2)`,
       "tipo `void` para funções que não retornam nada.",
     task: "Crie variáveis dos tipos aprendidos.",
     hint: 'let name: string = "Alice";',
-    starterCode: `let name: string = "Alice"
+    starterCode: `{
+let name: string = "Alice"
 let age: number = 25
 let isStudent: boolean = true
 let nothing: null = null
@@ -171,7 +172,8 @@ let notDefined: undefined = undefined
 let id: symbol = Symbol("id")
 let bigNumber: bigint = 9007199254740991n
 
-console.log(name, age, isStudent)`,
+console.log(name, age, isStudent)
+}`,
   },
   {
     id: 8,
@@ -483,11 +485,11 @@ console.log(trim(text))`,
   export function add(a: number, b: number): number {
     return a + b
   }
-  
+
   export function multiply(a: number, b: number): number {
     return a * b
   }
-  
+
   export const PI = 3.14159
 }
 
@@ -598,12 +600,12 @@ function factorial(n) {
   if (n < 0) {
     throw new Error("Number must be non-negative")
   }
-  
+
   let result = 1
   for (let i = 2; i <= n; i++) {
     result *= i
   }
-  
+
   return result
 }
 
@@ -623,7 +625,7 @@ console.log("Fatorial de 5:", factorial(5))`,
 declare namespace Utils {
   function formatDate(date: Date): string
   function trim(str: string): string
-  
+
   class HttpClient {
     constructor(baseUrl: string)
     get<T>(endpoint: string): Promise<T>
@@ -715,7 +717,7 @@ console.log("New Balance:", account.getBalance())`,
     hint: "class Student extends Person { }",
     starterCode: `class Person {
   constructor(public name: string, public age: number) {}
-  
+
   greet(): string {
     return \`Olá, sou \${this.name}\`
   }
@@ -1194,22 +1196,22 @@ console.log("Find 1:", repo.findById(1))`,
 
 function processInput(input: string): number {
   const num = Number(input)
-  
+
   if (isNaN(num)) {
     throw new Error("Input must be a valid number")
   }
-  
+
   if (num < 0) {
     throw new Error("Number must be positive")
   }
-  
+
   return num * 2
 }
 
 try {
   const result = processInput("5")
   console.log("Result:", result)
-  
+
   const invalidResult = processInput("-3")
   console.log("This won't print:", invalidResult)
 } catch (error) {
@@ -1257,7 +1259,7 @@ async function main() {
   console.log("Fetching user data...")
   const userData = await fetchUser(1)
   console.log("User:", JSON.stringify(userData))
-  
+
   const users = await Promise.all([
     fetchUser(1),
     fetchUser(2),
@@ -1993,7 +1995,7 @@ const transitions: Record<OrderState, OrderEvent["type"][]> = {
 
 function transition(order: Order, event: OrderEvent): Order {
   const allowed = transitions[order.state]
-  
+
   if (!allowed.includes(event.type)) {
     throw new Error(\`Cannot \${event.type} from \${order.state}\`)
   }
@@ -2178,7 +2180,7 @@ function assertNonNull<T>(value: T, message: string): asserts value is NonNullab
 function processValue(value: string | number) {
   assert(typeof value === "number", "Value must be a number")
   assert(value > 0, "Value must be positive")
-  
+
   console.log("Value is positive number:", value * 2)
 }
 
@@ -2442,11 +2444,11 @@ const csvData = \`id,name,email,age
 function parseCSV<T>(csv: string): T[] {
   const lines = csv.trim().split("\\n")
   const headers = lines[0].split(",")
-  
+
   return lines.slice(1).map(line => {
     const values = line.split(",")
     const obj: any = {}
-    
+
     headers.forEach((header, i) => {
       let value: string | number = values[i]
       if (!isNaN(Number(value))) {
@@ -2454,7 +2456,7 @@ function parseCSV<T>(csv: string): T[] {
       }
       obj[header] = value
     })
-    
+
     return obj as T
   })
 }
@@ -2761,7 +2763,7 @@ console.log("Ambient declarations loaded!")`,
       "Útil em switch statements exaustivos.",
     task: "Crie um switch exaustivo.",
     hint: "default: const _: never = value",
-    starterCode: `type Shape = 
+    starterCode: `type Shape =
   | { kind: "circle"; radius: number }
   | { kind: "square"; side: number }
   | { kind: "rectangle"; width: number; height: number }
@@ -3707,7 +3709,7 @@ console.log(matchRoute("/posts/456?draft=true", routes))`,
 ): T & { id: string; createdAt: Date; updatedAt: Date } {
   const id = crypto.randomUUID()
   const now = new Date()
-  
+
   return {
     ...data,
     id,
@@ -3732,7 +3734,7 @@ const user = createEntity<User>({ name: "Alice", email: "alice@example.com" })
 console.log("Product:", product)
 console.log("User:", user)
 
-function createList<T>(items: T[]): T[] & { 
+function createList<T>(items: T[]): T[] & {
   add: (item: T) => void
   remove: (index: number) => void
 } {
@@ -4705,7 +4707,7 @@ let count = 0
 const intervalId = setInterval(() => {
   count++
   console.log("Count:", count)
-  
+
   if (count === 2) {
     clearInterval(intervalId)
     console.log("Stopped at 2")
